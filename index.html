@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Drink Counter</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="title">
+        <h1>Drink Counter</h1>
+        <img src="img/cocktail.png" />
+      </div>
+      <div id="summary-container">
+        <p id="summary">12</p>
+        <p>TOTAL</p>
+      </div>
+      <div class="buttons-container">
+        <button id="small">20ml</button>
+        <button id="medium">40ml</button>
+        <button id="large">60ml</button>
+        <button id="last">Last drink</button>
+        <button id="open">CUSTOM</button>
+      </div>
+    </div>
+    <div class="modal-container" id="modal">
+      <div class="modal">
+        <button class="close-btn" id="close">
+          <img src="img/close.png" />
+        </button>
+        <div class="modal-header">
+          <h3>Sign Up</h3>
+        </div>
+        <div class="modal-content">
+          <p>co wpisac !</p>
+          <form class="modal-form">
+            <div>
+              <label for="ml">Amount in ml</label>
+              <input
+                type="number"
+                class="modal-form-input"
+                id="ml"
+                placeholder="Enter amount in ml"
+              />
+            </div>
+            <div>
+              <label for="percent">Amount of alkohol %</label>
+              <input
+                type="number"
+                id="percent"
+                class="modal-form-input"
+                placeholder="Enter amount of alkohol in %"
+              />
+            </div>
+            <input type="submit" value="Submit" class="submit-btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
