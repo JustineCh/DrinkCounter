@@ -24,24 +24,35 @@ class Drink {
 class DrinkCounter {
   constructor() {
     this.drinks = [];
-    this.total = 0;
   }
 
-  drinksFromLast7Days() {
+  drinksFromLastDays(days) {
     function drinkCondition(drink) {
       let startDate = new Date();
-      startDate.setDate(startDate.getDate() - 7);
+      startDate.setDate(startDate.getDate() - days);
       return drink.timeStamp >= startDate;
     }
-    let sevenDrinks = this.drinks.filter(drinkCondition);
-    return sevenDrinks;
+    return this.drinks.filter(drinkCondition);
+  }
+
+  sumOfAlcoholInGrams(days) {
+    const drinksList = this.drinksFromLastDays(days);
+    let total = 0;
+    drinksList.forEach(drink => {
+      total += drink.getAlcoholInGrams();
+    });
+    if(total <= 238){
+      console.log('under the limit')
+      return total
+    } else {
+      console.log('over the limit')
+      return total
+    }
   }
 
   addDrink(mlAmount, percentAmount, timeStamp) {
     let drink = new Drink(mlAmount, percentAmount, timeStamp);
     this.drinks.push(drink);
-    let alcoholInGrams = drink.getAlcoholInGrams();
-    this.total += alcoholInGrams;
   }
 }
 
