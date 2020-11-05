@@ -31,7 +31,7 @@ body {
   margin: 20px auto;
   max-width: 400px;
   width: 80vw;
-  height: 90vh;
+  /* height: 90vh; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border: 2px solid #f2f2f2;
   border-radius: 10px;
@@ -70,8 +70,18 @@ body {
   font-size: 40px;
 }
 
+.soft-limit-color {
+  background-color: var(--tertiary-color) !important;
+  border-color: var(--tertiary-color) !important;
+}
+
+.hard-limit-color {
+  background-color: var(--quaternary-color) !important;
+  border-color: var(--quaternary-color) !important;
+}
+
 #summary {
-  font-size: 80px !important;
+  font-size: 75px !important;
   margin-bottom: 20px;
 }
 
