@@ -11,89 +11,53 @@ const modalSummary = document.getElementById("modal-summary");
 const smallAmountBtn = document.getElementById("small");
 const mediumAmountBtn = document.getElementById("medium");
 const largeAmountBtn = document.getElementById("large");
+const customDrinkSubmit = document.getElementById("custom-drink-submit");
 
-class Drink {
-  constructor(mlAmount, percentAmount, timeStamp) {
-    this.mlAmount = mlAmount;
-    this.percentAmount = percentAmount;
-    this.timeStamp = timeStamp;
-  }
-
-  getAlcoholInGrams() {
-    return (8 * this.mlAmount * this.percentAmount) / 1000;
-  }
-}
-
-class DrinkCounter {
-  constructor(
-    periodInDays = 7, 
-    softLimit = 12*14, // 12 standard drinks 14g each
-    hardLimit = 20*14 // 20 standard drinks 14g each 
-    ) {
-    this.drinks = [];
-    this.periodInDays = periodInDays;
-    this.softLimit = softLimit;
-    this.hardLimit = hardLimit;
-  }
-
-  drinksFromLastDays() {
-    let periodInDays = this.periodInDays;
-    function drinkCondition(drink) {
-      let startDate = new Date();
-      startDate.setDate(startDate.getDate() - periodInDays);
-      return drink.timeStamp >= startDate;
-    }
-    return this.drinks.filter(drinkCondition);
-  }
-
-  sumOfAlcoholInGrams() {
-    const drinksList = this.drinksFromLastDays(this.periodInDays);
-    let total = 0;
-    drinksList.forEach(drink => {
-      total += drink.getAlcoholInGrams();
-    });
-    return total
-  }
-
-  isAboveSoftLimit(sum) {
-   return sum <= this.softLimit
-  }
-
-  isAboveHardLimit(sum) {
-    return sum <= this.hardLimit
-   }
-
-  addDrink(mlAmount, percentAmount, timeStamp) {
-    let drink = new Drink(mlAmount, percentAmount, timeStamp);
-    this.drinks.push(drink);
-  }
-}
 
 const drinkCounter = new DrinkCounter();
+const ui = new UI();
+
+function whenSoftLimitCrosses(condition){
+  if(condition){
+    ui.softLimitColorChange()
+  }
+}
+
+function whenHardLimitCrosses(condition){
+  if(condition){
+    ui.hardLimitColorChange()
+  }
+}
 
 smallAmountBtn.addEventListener("click", () => {
   drinkCounter.addDrink(20, 40, new Date());
-  let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays)
-  drinkCounter.isAboveSoftLimit(sum)
-  drinkCounter.isAboveHardLimit(sum)
-  console.log(drinkCounter.drinks)
+  let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays);
+  ui.updateTotal(Math.round((sum + Number.EPSILON) * 100) / 100)
+  whenSoftLimitCrosses(drinkCounter.isAboveSoftLimit(sum));
+  whenHardLimitCrosses(drinkCounter.isAboveHardLimit(sum));
 });
 
 mediumAmountBtn.addEventListener("click", () => {
   drinkCounter.addDrink(40, 40, new Date());
-  let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays)
-  drinkCounter.isAboveSoftLimit(sum)
-  drinkCounter.isAboveHardLimit(sum)
-  console.log(drinkCounter.drinks)
+  let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays);
+  ui.updateTotal(Math.round((sum + Number.EPSILON) * 100) / 100)
+  whenSoftLimitCrosses(drinkCounter.isAboveSoftLimit(sum));
+  whenHardLimitCrosses(drinkCounter.isAboveHardLimit(sum));
 });
 
 largeAmountBtn.addEventListener("click", () => {
   drinkCounter.addDrink(60, 40, new Date());
-  let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays)
-  drinkCounter.isAboveSoftLimit(sum)
-  drinkCounter.isAboveHardLimit(sum)
-  console.log(drinkCounter.drinks)
+  let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays);
+  ui.updateTotal(Math.round((sum + Number.EPSILON) * 100) / 100)
+  whenSoftLimitCrosses(drinkCounter.isAboveSoftLimit(sum));
+  whenHardLimitCrosses(drinkCounter.isAboveHardLimit(sum));
 });
+
+customDrinkSubmit.addEventListener("click", () => {
+  const customDrinkMlAmount = Number(document.getElementById("ml").value);
+  const customDrinkPercentAmount = Number(document.getElementById("percent").value);
+  drinkCounter.addDrink(customDrinkMlAmount, customDrinkPercentAmount, new Date());
+})
 
 open.forEach(item => {
   item.addEventListener("click", e => {
