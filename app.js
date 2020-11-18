@@ -24,7 +24,6 @@ const modalCustomDrink = document.getElementById("modal-custom-drink");
 const modalSummary = document.getElementById("modal-summary");
 const smallAmountBtn = document.getElementById("small");
 const mediumAmountBtn = document.getElementById("medium");
-const largeAmountBtn = document.getElementById("large");
 const customDrinkSubmit = document.getElementById("custom-drink-submit");
 
 function whenSoftLimitCrosses(condition) {
@@ -47,12 +46,6 @@ smallAmountBtn.addEventListener("click", () => {
 
 mediumAmountBtn.addEventListener("click", () => {
   drinkCounter.addDrink(40, 40, new Date());
-  refreshUI();
-  storage.setDrinks(drinkCounter.drinks);
-});
-
-largeAmountBtn.addEventListener("click", () => {
-  drinkCounter.addDrink(60, 40, new Date());
   refreshUI();
   storage.setDrinks(drinkCounter.drinks);
 });
