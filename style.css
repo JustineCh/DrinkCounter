@@ -90,8 +90,15 @@ body {
   height: 120px;
   margin: 10px auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.two-buttons-container {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 button,
@@ -101,6 +108,7 @@ input[type="submit"] {
   color: var(--basic-color);
   cursor: pointer;
   font-size: 15px;
+  width: 100px;
   padding: 3px 14px;
   margin: 5px;
 }
