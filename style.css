@@ -18,6 +18,7 @@
 
 body {
   font-family: "Lato", sans-serif;
+  line-height: 1.5;
   margin: 0;
   background-color: var(--basic-color);
   color: var(--dark-color);
@@ -70,6 +71,18 @@ body {
   font-size: 40px;
 }
 
+#summary-text {
+  position: relative;
+  width: 170px;
+  top: 17px;
+  font-size: 12px;
+  text-align: center;
+}
+
+#summary {
+  font-size: 70px !important;
+}
+
 .soft-limit-color {
   background-color: var(--tertiary-color) !important;
   border-color: var(--tertiary-color) !important;
@@ -80,23 +93,10 @@ body {
   border-color: var(--quaternary-color) !important;
 }
 
-#summary {
-  font-size: 75px !important;
-  margin-bottom: 20px;
-}
-
 .buttons-container {
   width: 90%;
   height: 120px;
   margin: 10px auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.two-buttons-container {
-  height: 50%;
-  width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
@@ -125,27 +125,12 @@ button:focus {
   outline: none;
 }
 
-#small {
-  background-color: var(--primary-color);
-  
-}
-
-#medium {
-  background-color: var(--tertiary-color);
-}
-
-#large {
-  background-color: var(--secondary-color);
-  
-}
-
 #last {
-  background-color: var(--fifth-color);
-  
+  background-color: var(--primary-color);
 }
 
 #open-custom-drink {
-  background-color: var(--quaternary-color);
+  background-color: var(--tertiary-color);
 }
 
 #back-arrow-container {
@@ -189,11 +174,11 @@ li {
 
 .arrow-img {
   height: 25px;
-} 
+}
 
 .delete-img {
   height: 20px;
-} 
+}
 
 /* Modal */
 
