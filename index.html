@@ -14,17 +14,14 @@
       </div>
       <a id="summary-container" class="open">
         <p id="summary">0</p>
-        <p>TOTAL</p>
+        <p id="summary-text">
+          TOTAL ALCOHOL IN GRAMS <br />
+          IN LAST 7 DAYS
+        </p>
       </a>
       <div class="buttons-container">
-        <div class="two-buttons-container">
-          <button class="amount-btn" id="small">20 ml</button>
-        <button class="amount-btn" id="medium">40 ml</button>
-        </div>
-        <div class="two-buttons-container">
-          <button class="open" id="open-custom-drink">CUSTOM</button>
-        <button class="amount-btn" id="last">Last drink</button>
-        </div>
+        <button class="open" id="open-custom-drink">OTHER</button>
+        <button id="last"></button>
       </div>
     </div>
 
@@ -56,7 +53,12 @@
                 placeholder="Enter amount of alcohol in %"
               />
             </div>
-            <input type="submit" value="Submit" id="custom-drink-submit" class="submit-btn" />
+            <input
+              type="submit"
+              value="Submit"
+              id="custom-drink-submit"
+              class="submit-btn"
+            />
           </form>
         </div>
       </div>
@@ -72,7 +74,8 @@
         </div>
         <div class="modal-content">
           <ul id="main-container">
-            <li class="date">2020-10-22
+            <li class="date">
+              2020-10-22
               <ul>
                 <li class="day-list">
                   <p class="time">15:16</p>
