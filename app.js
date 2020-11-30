@@ -2,15 +2,22 @@ const drinkCounter = new DrinkCounter();
 const ui = new UI();
 const storage = new Storage();
 
-const refreshUI = function() {
+drinkCounter.drinks = storage.getDrinks();
+
+const refreshUI = function () {
   let sum = drinkCounter.sumOfAlcoholInGrams(this.periodInDays);
   ui.updateTotal(Math.round((sum + Number.EPSILON) * 100) / 100);
   whenSoftLimitCrosses(drinkCounter.isAboveSoftLimit(sum));
   whenHardLimitCrosses(drinkCounter.isAboveHardLimit(sum));
-}
+  if (drinkCounter.drinks.length != 0) {
+    let lastDrink = drinkCounter.drinks[drinkCounter.drinks.length - 1];
+    ui.updateLastDrink(lastDrink);
+  }
+  console.log(drinkCounter.drinks);
+};
 
-drinkCounter.drinks = storage.getDrinks();
 refreshUI();
+console.log(drinkCounter.drinks);
 
 const open = document.querySelectorAll(".open");
 const openSummary = document.getElementById("summary-container");
@@ -22,9 +29,8 @@ const closeSummary = document.getElementById("close-summary");
 const closeSummaryIMG = document.querySelector("#close-summary img");
 const modalCustomDrink = document.getElementById("modal-custom-drink");
 const modalSummary = document.getElementById("modal-summary");
-const smallAmountBtn = document.getElementById("small");
-const mediumAmountBtn = document.getElementById("medium");
 const customDrinkSubmit = document.getElementById("custom-drink-submit");
+const lastDrinkBtn = document.getElementById("last");
 
 function whenSoftLimitCrosses(condition) {
   if (condition) {
@@ -38,21 +44,9 @@ function whenHardLimitCrosses(condition) {
   }
 }
 
-smallAmountBtn.addEventListener("click", () => {
-  drinkCounter.addDrink(20, 40, new Date());
-  refreshUI();
-  storage.setDrinks(drinkCounter.drinks);
-});
-
-mediumAmountBtn.addEventListener("click", () => {
-  drinkCounter.addDrink(40, 40, new Date());
-  refreshUI();
-  storage.setDrinks(drinkCounter.drinks);
-});
-
-customDrinkSubmit.addEventListener("click", () => {
-  const customDrinkMlAmount = Number(document.getElementById("ml").value);
-  const customDrinkPercentAmount = Number(
+customDrinkSubmit.addEventListener("click", e => {
+  let customDrinkMlAmount = Number(document.getElementById("ml").value);
+  let customDrinkPercentAmount = Number(
     document.getElementById("percent").value
   );
   drinkCounter.addDrink(
@@ -60,8 +54,20 @@ customDrinkSubmit.addEventListener("click", () => {
     customDrinkPercentAmount,
     new Date()
   );
-  refreshUI();
   storage.setDrinks(drinkCounter.drinks);
+  refreshUI();
+  modalCustomDrink.classList.remove("show-modal");
+});
+
+lastDrinkBtn.addEventListener("click", () => {
+  let lastDrink = drinkCounter.drinks[drinkCounter.drinks.length - 1];
+  drinkCounter.addDrink(
+    lastDrink.mlAmount,
+    lastDrink.percentAmount,
+    new Date()
+  );
+  storage.setDrinks(drinkCounter.drinks);
+  refreshUI();
 });
 
 open.forEach(item => {
