@@ -2,13 +2,13 @@ class UI {
   softLimitColorChange() {
     document
       .getElementById("summary-container")
-      .classList.add("soft-limit-color");
+      .classList.add("summary-background-soft-limit");
   }
 
   hardLimitColorChange() {
     document
       .getElementById("summary-container")
-      .classList.add("hard-limit-color");
+      .classList.add("summary-background-hard-limit");
   }
 
   updateTotal(value) {
@@ -18,6 +18,6 @@ class UI {
   updateLastDrink(lastDrink) {
     document.getElementById(
       "last"
-    ).innerHTML = `${lastDrink.mlAmount} ml <br> of <br> ${lastDrink.percentAmount} % alcohol`;
+    ).innerHTML = `${lastDrink.mlAmount} ml <br> of <br> ${lastDrink.percentAmount} % alc`;
   }
 }

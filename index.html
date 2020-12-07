@@ -7,21 +7,29 @@
     <title>Drink Counter</title>
   </head>
   <body>
-    <div class="container">
-      <div id="title">
-        <h1>Drink Counter</h1>
-        <img src="img/cocktail.png" />
-      </div>
-      <a id="summary-container" class="open">
-        <p id="summary">0</p>
-        <p id="summary-text">
-          TOTAL ALCOHOL IN GRAMS <br />
-          IN LAST 7 DAYS
-        </p>
-      </a>
-      <div class="buttons-container">
-        <button class="open" id="open-custom-drink">OTHER</button>
-        <button id="last"></button>
+    <div class="new-container">
+      <div class="container">
+        <div id="title">
+          <h1>Drink Counter</h1>
+          <img src="img/cocktail.png" />
+        </div>
+        <a id="summary-container" class="open summary-background-home">
+          <p id="summary">0</p>
+          <p id="summary-text">
+            TOTAL ALCOHOL IN GRAMS <br />
+            IN LAST 7 DAYS
+          </p>
+        </a>
+        <div class="buttons-container">
+          <button class="open" id="open-custom-drink">
+            Custom <br />
+            drink
+          </button>
+          <button id="last">
+            50 ml <br />
+            of <br />40% alc
+          </button>
+        </div>
       </div>
     </div>
 
@@ -73,29 +81,27 @@
           </button>
         </div>
         <div class="modal-content">
-          <ul id="main-container">
-            <li class="date">
-              2020-10-22
-              <ul>
-                <li class="day-list">
-                  <p class="time">15:16</p>
-                  <img class="arrow-img" src="img/right-arrow1.png" />
-                  <p class="amount">40 ml</p>
-                  <a class="delete"
-                    ><img class="delete-img" src="img/delete.png"
-                  /></a>
-                </li>
-                <li class="day-list">
-                  <p class="time">15:16</p>
-                  <img class="arrow-img" src="img/right-arrow.png" />
-                  <p class="amount">40 ml</p>
-                  <a class="delete"
-                    ><img class="delete-img" src="img/delete.png"
-                  /></a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <div id="main-container">
+            <ol class="day">
+              <p class="date">2020-10-22</p>
+              <li class="day-list">
+                <p class="time">18:10</p>
+                <img class="arrow-img" src="img/arrow.png" />
+                <p class="amount">40 ml of 40% alc</p>
+                <a class="delete"
+                  ><img class="delete-img" src="img/remove.png"
+                /></a>
+              </li>
+              <li class="day-list">
+                <p class="time">20:19</p>
+                <img class="arrow-img" src="img/arrow.png" />
+                <p class="amount">40 ml of 40% alc</p>
+                <a class="delete"
+                  ><img class="delete-img" src="img/remove.png"
+                /></a>
+              </li>
+            </ol>
+          </div>
         </div>
       </div>
     </div>
