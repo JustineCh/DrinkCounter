@@ -60,12 +60,16 @@ customDrinkSubmit.addEventListener("click", e => {
 });
 
 lastDrinkBtn.addEventListener("click", () => {
-  let lastDrink = drinkCounter.drinks[drinkCounter.drinks.length - 1];
-  drinkCounter.addDrink(
-    lastDrink.mlAmount,
-    lastDrink.percentAmount,
-    new Date()
-  );
+  if (drinkCounter.drinks.length === 0) {
+    drinkCounter.addDrink(50, 40, new Date());
+  } else {
+    let lastDrink = drinkCounter.drinks[drinkCounter.drinks.length - 1];
+    drinkCounter.addDrink(
+      lastDrink.mlAmount,
+      lastDrink.percentAmount,
+      new Date()
+    );
+  }
   storage.setDrinks(drinkCounter.drinks);
   refreshUI();
 });
